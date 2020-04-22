@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session
+from flask import Flask, session, render_template
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -20,6 +20,15 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+
 @app.route("/")
-def index():
-    return "Project 1: TODO"
+def home():
+    return render_template('home.html')
+
+
+@app.route("/books")
+def book():
+    return render_template('books.html')
+
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0')
