@@ -1,8 +1,21 @@
 {% extends "layout.html"%} {% block content %}
-<h2 class="page-content">TOP 10 BOOKS 2019</h2>
-
-{% for book in books %}
-
-<h1>{{ book.title }}</h1>
-
-{% endfor %} {% endblock %}
+<div class="row row-cols-3">
+  {% for book in books %}
+  <div class="col">
+    <div class="card h-100">
+      <!-- <img
+        src="https://m.media-amazon.com/images/I/41I3lf94MYL.jpg"
+        class="card-img-top"
+        alt="book title"
+      /> -->
+      <div class="card-body">
+        <h3 class="card-title">{{ book.title }}</h3>
+        <h5 class="card-text author-name">{{ book.author}}</h5>
+        <p class="card-text book-year">{{ book.year}}</p>
+        <p class="card-text book.isbn">{{ book.isbn}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

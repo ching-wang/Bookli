@@ -1,5 +1,6 @@
 import requests
 import os
+import csv
 
 from flask import Flask, session, render_template
 from flask_session import Session
@@ -26,11 +27,29 @@ db = scoped_session(sessionmaker(bind=engine))
 def home():
     return render_template('home.html')
 
+
+@app.route('/signUp')
+def signUp():
+    return render_template('signUp.html')
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
 @app.route("/books")
 def books():
     allbooks = db.execute(
         "SELECT isbn, title, author, year FROM books").fetchall()
-    return render_template('books.html', book=allbooks)
+    return render_template('books.html', books=allbooks)
+
+
+# @app.route("/user/:")
+# def user():
+#     user = db.execute(
+#         "SELECT user FROM users WHERE id ==== "
+#     )
 
 if __name__ == "__main__":
     main()

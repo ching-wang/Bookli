@@ -3,14 +3,19 @@ $primary-color: white;
 $hero-font: "Julius Sans One", sans-serif;
 
 .page-content {
-  margin: 30px;
+  margin: auto;
+  padding: 40px;
   text-align: center;
-}
-
-card {
-  border: none;
 }
 
 .span.hero-title {
   font-family: "Unica One", cursive;
+}
+
+.book-page-container {
+  margin: 5em;
+}
+
+.btn.btn-outline-dark.my-2.my-sm-0 {
+  margin: 2px;
 }
