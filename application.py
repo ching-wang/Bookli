@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import requests
-=======
->>>>>>> d481e653c51f3762112ab22dfe713b386ce1cf5d
 import os
 
 from flask import Flask, session, render_template
