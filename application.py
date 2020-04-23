@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+import requests
+=======
+>>>>>>> d481e653c51f3762112ab22dfe713b386ce1cf5d
 import os
 
 from flask import Flask, session, render_template
@@ -25,10 +29,11 @@ db = scoped_session(sessionmaker(bind=engine))
 def home():
     return render_template('home.html')
 
-
 @app.route("/books")
-def book():
-    return render_template('books.html')
+def books():
+    allbooks = db.execute(
+        "SELECT isbn, title, author, year FROM books").fetchall()
+    return render_template('books.html', book=allbooks)
 
-# if __name__ == "__main__":
-#     app.run(host='0.0.0.0')
+if __name__ == "__main__":
+    main()
