@@ -1,7 +1,7 @@
-import os
 import requests
+import os
 
-from flask import Flask, session
+from flask import Flask, session, render_template
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -21,6 +21,17 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+
 @app.route("/")
-def index():
-    return "Project 1: TODO"
+def home():
+    return render_template('home.html')
+
+
+@app.route("/books")
+def books():
+    allbooks = db.execute(
+        "SELECT isbn, title, author, year FROM books").fetchall()
+    return render_template('books.html', book=allbooks)
+
+if __name__ == "__main__":
+    main()
