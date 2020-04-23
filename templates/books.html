@@ -1,4 +1,8 @@
 {% extends "layout.html"%} {% block content %}
 <h2 class="page-content">TOP 10 BOOKS 2019</h2>
-{% %}
-{% endblock %}
+
+{% for book in books %}
+
+<h1>{{ book.title }}</h1>
+
+{% endfor %} {% endblock %}
