@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import requests
+=======
+>>>>>>> d481e653c51f3762112ab22dfe713b386ce1cf5d
 import os
 
 from flask import Flask, session, render_template
@@ -25,7 +28,6 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.route("/")
 def home():
     return render_template('home.html')
-
 
 @app.route("/books")
 def books():
