@@ -29,3 +29,7 @@ Run `flask run` to start up the application.
 - SASS
 - CSS
 - HTML5
+
+## User Story
+
+AAU, you can login, sign up, comment on a book, search for book.

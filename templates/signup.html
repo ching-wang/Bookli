@@ -11,14 +11,16 @@
             <div class="form-group">
               <input
                 type="text"
+                name="username"
                 class="form-control"
-                id="name"
-                placeholder="Name"
+                id="username"
+                placeholder="Username"
               />
             </div>
             <div class="form-group">
               <input
                 type="email"
+                name="email"
                 class="form-control"
                 id="email"
                 placeholder="Email"
@@ -28,23 +30,26 @@
             <div class="form-group">
               <input
                 type="password"
+                name="password"
                 class="form-control"
                 id="password"
                 placeholder="Password"
               />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <input
                 type="password"
                 class="form-control"
                 id="confirm-password"
                 placeholder="confirm-password"
               />
-            </div>
+            </div> -->
             <div
               class="d-flex flex-row align-items-center justify-content-between"
             >
-              <a href="#"> <button class="btn btn-primary">Sing Up</button></a>
+              <a href="{{url_for('login')}}">
+                <button class="btn btn-primary">Sing Up</button></a
+              >
             </div>
           </form>
         </div>
