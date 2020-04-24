@@ -7,8 +7,11 @@
         <h2 class="card-title text-center">
           Log in
         </h2>
+        {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
         <div class="card-body py-md-4">
-          <form _lpchecked="1" action="login.html" method="post">
+          <form action="{{url_for('post_login')}}" method="post">
             <div class="form-group">
               <input
                 type="text"
