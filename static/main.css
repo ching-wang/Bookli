@@ -1,11 +1,21 @@
-.page-content {
-  margin: 30px;
-  text-align: center; }
+body {
+  background-color: pink; }
 
-card {
-  border: none; }
+.page-content {
+  margin: auto;
+  padding: 40px;
+  text-align: center; }
 
 .span.hero-title {
   font-family: "Unica One", cursive; }
+
+.book-page-container {
+  margin: 5em; }
+
+.btn.btn-outline-dark.my-2.my-sm-0 {
+  margin: 2px; }
+
+.hero-page {
+  background-image: url("https://images.unsplash.com/photo-1512045482940-f37f5216f639?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"); }
 
 /*# sourceMappingURL=main.css.map */
