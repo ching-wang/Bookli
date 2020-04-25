@@ -54,4 +54,3 @@ coverage.xml
 docs/_build/
 .sass-cache/
 flask_session/*
-
