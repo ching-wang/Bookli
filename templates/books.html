@@ -1,21 +1,14 @@
-{% extends "layout.html"%} {% block content %}
-<div class="row row-cols-3">
-  {% for book in books %}
-  <div class="col">
-    <div class="card h-100">
-      <!-- <img
-        src="https://m.media-amazon.com/images/I/41I3lf94MYL.jpg"
-        class="card-img-top"
-        alt="book title"
-      /> -->
-      <div class="card-body">
-        <h3 class="card-title">{{ book.title }}</h3>
-        <h5 class="card-text author-name">{{ book.author}}</h5>
-        <p class="card-text book-year">{{ book.year}}</p>
-        <p class="card-text book.isbn">{{ book.isbn}}</p>
+{% extends "layout.html"%} {% block content %} {% for book in books %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-title">{{ book.author }}</p>
+        <p class="card-title">{{ book.year }}</p>
+        <p class="card-title">{{ book.isbn }}</p>
       </div>
     </div>
   </div>
-  {% endfor %}
 </div>
-{% endblock %}
+{% endfor %} {% endblock %}

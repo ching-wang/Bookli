@@ -2,6 +2,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
 from flask_session import Session
 from flask import Flask, request, session, render_template, redirect, url_for
+from flask_bootstrap import Bootstrap
 import requests
 import os
 import csv

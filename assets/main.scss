@@ -3,7 +3,7 @@ $primary-color: white;
 $hero-font: "Julius Sans One", sans-serif;
 
 body {
-  background-color: pink;
+  background-color: $primary-color;
 }
 .page-content {
   margin: auto;
@@ -23,6 +23,6 @@ body {
   margin: 2px;
 }
 
-.hero-page {
-  background-image: url("https://images.unsplash.com/photo-1512045482940-f37f5216f639?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
+h1 {
+  font-family: "Unica One", cursive;
 }
