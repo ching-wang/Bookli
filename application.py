@@ -123,6 +123,7 @@ def post_login():
 def get_logout():
     session.clear()
 
+
 @app.route("/logout")
 def logout():
     get_logout()
