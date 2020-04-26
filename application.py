@@ -119,7 +119,17 @@ def post_login():
     return redirect(url_for("profile"))
 
 
-@app.route('/profile')
+@app.route("/get-logout")
+def get_logout():
+    session.clear()
+
+@app.route("/logout")
+def logout():
+    get_logout()
+    return redirect(url_for("home"))
+
+
+@app.route("/profile")
 def profile():
     return render_template('profile.html')
 
