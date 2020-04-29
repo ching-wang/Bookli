@@ -119,19 +119,16 @@ def post_login():
     return redirect(url_for("profile"))
 
 
-@app.route("/get-logout")
-def get_logout():
-    session.clear()
-
-
 @app.route("/logout")
 def logout():
-    get_logout()
+    session.clear()
     return redirect(url_for("home"))
 
 
 @app.route("/profile")
 def profile():
+    # if session.length < 0:
+    #     return render_template("login.html", message="you must log in to view this page")
     return render_template('profile.html')
 
 
@@ -140,6 +137,11 @@ def books():
     allbooks = db.execute(
         "SELECT isbn, title, author, year FROM books").fetchall()
     return render_template('books.html', books=allbooks)
+
+
+@app.route("/book")
+def book():
+    return render_template("book.html")
 
 
 def make_salt() -> str:
