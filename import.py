@@ -12,11 +12,14 @@ engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
 with open("books.csv", "r") as f:
-    reader = csv.reader(f)
-    for isbn, title, author, year in reader:
+    reader = csv.DictReader(f)
+    row_num = 0
+    for row in reader:
+        row_num = row_num + 1
         db.execute("INSERT INTO books (isbn, title, author, year) VALUES (:isbn, :title, :author, :year)",
-                   {"isbn": isbn,
-                    "title": title,
-                    "author": author,
-                    "year": year})
-        db.commit()
+                   {"isbn": str(row["isbn"]),
+                    "title": str(row["title"]),
+                    "author": str(row["author"]),
+                    "year": int(row["year"])})
+        print(f"row {row_num}")
+    db.commit()
