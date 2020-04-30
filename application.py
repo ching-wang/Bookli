@@ -33,7 +33,9 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    books = db.execute(
+        "SELECT isbn, title, author, year FROM books").fetchall()
+    return render_template('home.html', books=books)
 
 
 @app.route('/sign-up', methods=["get"])

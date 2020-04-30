@@ -1,47 +1,43 @@
-{% extends 'layout.html' %} {% block hero %}
+{% extends 'layout.html' %} {% block content %}
 <div class="container">
   <div class="row">
     <div class="col">
       <h1>Discover a book</h1>
     </div>
   </div>
+  {% for book in books %}
   <div class="row align-items-start">
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title">THE SWITCH</h3>
-          <h6 class="card-text text-info">By <strong>Beth O'Leary</strong></h6>
+          <h3 class="card-title">{{ book.title }}</h3>
+          <h6 class="card-text text-info">
+            By <strong>{{ book.author }}</strong>
+          </h6>
           <p>
             &nbsp 5 Star Rating
-            <span class="float-left"><i class="text-warning fa fa-star"></i></span>
-            <span class="float-left"><i class="text-warning fa fa-star"></i></span>
-            <span class="float-left"><i class="text-warning fa fa-star"></i></span>
-            <span class="float-left"><i class="text-warning fa fa-star"></i></span>
-            <span class="float-left"><i class="text-warning fa fa-star"></i></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
           </p>
-          <p>Published in 2019</p> <p class="card-text">ISBN 9781787475014</p>
+          <p>Published in {{ book.year }}</p>
+          <p class="card-text">ISBN {{ book.isbn }}</p>
         </div>
       </div>
     </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">THE SWITCH</h3>
-            <h6 class="card-text text-info">By <strong>Beth O'Leary</strong></h6>
-            <p class="card-text">NO. ISBNNUMBER</p>
-          </div>
-      </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">THE SWITCH</h3>
-            <h6 class="card-text text-info">By <strong>Beth O'Leary</strong></h6>
-            <p class="card-text">NO. ISBNNUMBER</p>
-          </div>
-      </div>
-      </div>
-    </div>
   </div>
-  {% endblock %}
+  {% endfor %}
 </div>
+{% endblock %}
