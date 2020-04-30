@@ -59,6 +59,7 @@
                 >All Books <span class="sr-only">(current)</span></a
               >
             </li>
+            {% if "user_data" in session %}
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -77,7 +78,10 @@
                 <a class="dropdown-item" href="#">Reading list</a>
               </div>
             </li>
+            {% endif %}
           </ul>
+          <!-- if session username is None -->
+          {% if "user_data" not in session %}
           <a href="{{ url_for('get_login')}}"
             ><button class="btn btn-outline-dark my-2 my-sm-0">
               Login
@@ -88,11 +92,13 @@
               Sign Up
             </button></a
           >
-          <a href="{{ url_for('logout')}}"
-            ><button class="btn btn-outline-dark my-2 my-sm-0">
+          {% endif %} {% if "user_data" in session %}
+          <form class="form" action="{{ url_for('logout')}}" method="post">
+            <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">
               Logout
-            </button></a
-          >
+            </button>
+          </form>
+          {% endif %}
         </div>
       </nav>
     </header>
