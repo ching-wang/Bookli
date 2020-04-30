@@ -1,8 +1,20 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="container">
+  <div class="col">
+    <h1>Discover a book</h1>
+  </div>
+
   <div class="row">
     <div class="col">
-      <h1>Discover a book</h1>
+      <form class="form-inline" action="#" method="POST">
+        <input
+          class="form-control mr-2"
+          type="text"
+          placeholder="Search"
+          name="text"
+        />
+        <button class="btn btn-info" type="submit">Search</button>
+      </form>
     </div>
   </div>
   {% for book in books %}
@@ -10,12 +22,12 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title">{{ book.title }}</h3>
+          <h2 class="card-title">{{ book.title }}</h2>
           <h6 class="card-text text-info">
-            By <strong>{{ book.author }}</strong>
+            <small>By</small> <strong>{{ book.author }}</strong>
           </h6>
           <p>
-            &nbsp 5 Star Rating
+            &nbsp 5 Star Rating {{ book.rate}}
             <span class="float-left"
               ><i class="text-warning fa fa-star"></i
             ></span>
@@ -34,6 +46,7 @@
           </p>
           <p>Published in {{ book.year }}</p>
           <p class="card-text">ISBN {{ book.isbn }}</p>
+          <p class="card-text">{{ book.review }}</p>
         </div>
       </div>
     </div>

@@ -1,8 +1,10 @@
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
+from helper import *
 from flask_session import Session
-from flask import Flask, request, session, render_template, redirect, url_for
+from flask import Flask, request, session, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
+
 import requests
 import os
 import csv
@@ -34,7 +36,7 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.route("/")
 def home():
     books = db.execute(
-        "SELECT isbn, title, author, year FROM books").fetchall()
+        "SELECT isbn, title, author, year FROM books").fetchmany(100)
     return render_template('home.html', books=books)
 
 
@@ -122,8 +124,10 @@ def post_login():
 
 
 @app.route("/logout")
+@login_required
 def logout():
     session.clear()
+    flash("You have been logged out!")
     return redirect(url_for("home"))
 
 

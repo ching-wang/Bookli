@@ -1,15 +1,44 @@
-{% extends "layout.html"%} {% block content %} {% for book in books %}
+{% extends "layout.html"%} {% block content %}
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-5">
+  <div class="row">
+    <div class="col">
+      <h1>All books on our site</h1>
+    </div>
+  </div>
+  {% for book in books %}
+  <div class="row align-items-start">
+    <div class="col">
       <div class="card">
-        <h5 class="card-title">{{ book.title }}</h5>
-        <p class="card-title">{{ book.author }}</p>
-        <p class="card-title">{{ book.year }}</p>
-        <p class="card-title">{{ book.isbn }}</p>
+        <div class="card-body">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <h6 class="card-text text-info">
+            <small>By</small> <strong>{{ book.author }}</strong>
+          </h6>
+          <p>
+            &nbsp 5 Star Rating
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+            <span class="float-left"
+              ><i class="text-warning fa fa-star"></i
+            ></span>
+          </p>
+          <p>Published in {{ book.year }}</p>
+          <p class="card-text">ISBN {{ book.isbn }}</p>
+        </div>
       </div>
     </div>
   </div>
+  {% endfor %}
 </div>
 
-{% endfor %} {% endblock %}
+{% endblock %}
