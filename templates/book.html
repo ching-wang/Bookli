@@ -1,21 +1,27 @@
 {% extends 'layout.html'%} {% block hero %}
-<div class="container fluid">
+<div class="container">
   <div class="row">
-    <div class="col">
-      <img
-        src="https://blackwells.co.uk/jacket/l/9781787474994.jpg"
-        class="rounded"
-        alt="book the switch"
-      />
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">THE SWITCH</h3>
+          <h6 class="card-text text-info">By <strong>Beth O'Leary</strong></h6>
+          <p class="card-text">NO. ISBNNUMBER</p>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <button class="btn-group-sm btn-info">
+              <a href="#" class="btn">BUY IT AMAZON</a>
+            </button>
+          </div>
+          <div class="col-sm-3">
+            <button class="btn-group-sm btn-info">
+              <a href="#" class="btn">Add WishList</a>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <h1>Book details is going to display here</h1>
-    </div>
+    {% endblock %}
   </div>
-  <div class="row">
-    <div class="col md-12">
-      <p>Comments display here</p>
-    </div>
-  </div>
-  {% endblock %}
 </div>
