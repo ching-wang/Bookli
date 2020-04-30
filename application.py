@@ -1,6 +1,6 @@
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
-from helper import *
+from helper import login_required
 from flask_session import Session
 from flask import Flask, request, session, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
@@ -82,7 +82,6 @@ def post_sign_up():
 
     # Log the new user in.
     session["user_data"] = user_data
-
     return redirect(url_for("profile"))
 
 
@@ -123,8 +122,7 @@ def post_login():
     return redirect(url_for("profile"))
 
 
-@app.route("/logout")
-@login_required
+@app.route("/logout", methods=["post"])
 def logout():
     session.clear()
     flash("You have been logged out!")
@@ -132,6 +130,7 @@ def logout():
 
 
 @app.route("/profile")
+@login_required
 def profile():
     # if session.length < 0:
     #     return render_template("login.html", message="you must log in to view this page")
@@ -145,9 +144,13 @@ def books():
     return render_template('books.html', books=allbooks)
 
 
-@app.route("/book")
-def book():
-    return render_template("book.html")
+# @app.route("/isbn/<string:isbn>", method=["GET", "POST])
+# @login_required
+# def book(isbn):
+#     username = session.get('username')
+#     session["reviews"] = []
+#     new
+#     return render_template("book.html")
 
 
 def make_salt() -> str:
