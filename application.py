@@ -14,7 +14,6 @@ import string
 import logging
 import sys
 
-
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 app = Flask(__name__)
@@ -116,7 +115,7 @@ def post_login():
         # Wrong password: send back to login.
         return render_template("login.html", message="Wrong password")
 
-    # Log the user in in Flask by setting the user data in session.
+    # Log the user in in Flask by setting the user data in session
     session["user_data"] = user_data
 
     return redirect(url_for("profile"))
@@ -130,19 +129,15 @@ def logout():
 
 
 @app.route("/profile")
-@login_required
 def profile():
-    # if session.length < 0:
-    #     return render_template("login.html", message="you must log in to view this page")
     return render_template('profile.html')
 
 
 @app.route("/books")
 def books():
     allbooks = db.execute(
-        "SELECT isbn, title, author, year FROM books").fetchall()
+        "SELECT isbn, title, author, year FROM books").fetchmany(50)
     return render_template('books.html', books=allbooks)
-
 
 # @app.route("/isbn/<string:isbn>", method=["GET", "POST])
 # @login_required
