@@ -10,32 +10,16 @@
           </h6>
           <p class="card-text">{{book.isbn}}</p>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <button class="btn-group-sm btn-info">
-              <a href="#" class="btn">BUY IT ON AMAZON</a>
-            </button>
-          </div>
-          <div class="col-sm-3">
-            <button class="btn-group-sm btn-info">
-              <a href="#" class="btn">Add to WishList</a>
-            </button>
-          </div>
-        </div>
       </div>
-      <div>
-        {% for review in reviews %}
-        <div>
-          <h1>Write a review</h1>
-          <p>
-            {{review}}
-          </p>
-        </div>
-        {% endfor %}
-      </div>
+      {% for review in reviews %}
+      <p>
+        {{review.comment}}
+      </p>
+
+      {% endfor %}
     </div>
-    {% endblock %}
   </div>
+  {% endblock %}
   <div class="row">
     <div class="justify-content-center flex-row-reverse">
       <input type="radio" id="star5" name="rating" value="5" /><label
@@ -63,6 +47,7 @@
         title="1 star"
         >1</label
       >
+      <button class="btn btn-sm-info">submit</button>
     </div>
   </div>
 </div>

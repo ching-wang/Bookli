@@ -1,10 +1,10 @@
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
 from helper import login_required
+from goodread import fetch_books
 from flask_session import Session
 from flask import Flask, request, session, render_template, redirect, url_for, flash, jsonify
 from flask_bootstrap import Bootstrap
-
 import requests
 import os
 import csv
@@ -152,6 +152,7 @@ def books():
     return render_template('books.html', books=allbooks)
 
 
+# Search for a book
 @app.route("/search", methods=["get"])
 def search():
     query = request.args.get("q")
