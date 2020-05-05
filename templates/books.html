@@ -34,9 +34,15 @@
             </p>
             <p>Published in {{ book.year }}</p>
             <p class="card-text">ISBN {{ book.isbn }}</p>
-            
-            <a href="/book/{{book.isbn}} " class='btn-sm btn-info'> View Details </a>
-            <a href="/book/{{book.isbn}}" class='btn-sm btn-outline-info'> Review the book </a>
+            <p>
+              <a href="/book/{{book.isbn}}" class="float-right btn btn-outline-info ml-2">
+                <i class="fa fa-comments"></i> Review
+              </a>
+            </p>
+            <p>    <a  href="/book/{{book.isbn}}" class="float-right btn text-white btn-info">
+              <i class="fa fa-heart"></i> Details</a
+            >
+            </p>
           </div>
         </div>
       </a>
