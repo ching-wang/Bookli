@@ -4,24 +4,65 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title">THE SWITCH</h3>
-          <h6 class="card-text text-info">By <strong>Beth O'Leary</strong></h6>
-          <p class="card-text">NO. ISBNNUMBER</p>
+          <h3 class="card-title">{{book.title}}</h3>
+          <h6 class="card-text text-info">
+            By <strong>{{book.author}}</strong>
+          </h6>
+          <p class="card-text">{{book.isbn}}</p>
         </div>
         <div class="row">
           <div class="col-sm-3">
             <button class="btn-group-sm btn-info">
-              <a href="#" class="btn">BUY IT AMAZON</a>
+              <a href="#" class="btn">BUY IT ON AMAZON</a>
             </button>
           </div>
           <div class="col-sm-3">
             <button class="btn-group-sm btn-info">
-              <a href="#" class="btn">Add WishList</a>
+              <a href="#" class="btn">Add to WishList</a>
             </button>
           </div>
         </div>
       </div>
+      <div>
+        {% for review in reviews %}
+        <div>
+          <h1>Write a review</h1>
+          <p>
+            {{review}}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
     {% endblock %}
+  </div>
+  <div class="row">
+    <div class="justify-content-center flex-row-reverse">
+      <input type="radio" id="star5" name="rating" value="5" /><label
+        for="star5"
+        title="5 star"
+        >5</label
+      >
+      <input type="radio" id="star4" name="rating" value="4" /><label
+        for="star4"
+        title="4 star"
+        >4</label
+      >
+      <input type="radio" id="star3" name="rating" value="3" /><label
+        for="star3"
+        title="3 star"
+        >3</label
+      >
+      <input type="radio" id="star2" name="rating" value="2" /><label
+        for="star2"
+        title="2 star"
+        >2</label
+      >
+      <input type="radio" id="star1" name="rating" value="1" /><label
+        for="star1"
+        title="1 star"
+        >1</label
+      >
+    </div>
   </div>
 </div>

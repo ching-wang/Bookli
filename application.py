@@ -2,7 +2,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
 from helper import login_required
 from flask_session import Session
-from flask import Flask, request, session, render_template, redirect, url_for, flash
+from flask import Flask, request, session, render_template, redirect, url_for, flash, jsonify
 from flask_bootstrap import Bootstrap
 
 import requests
@@ -44,6 +44,17 @@ def get_sign_up():
     return render_template('sign_up.html')
 
 
+def make_salt() -> str:
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(16))
+
+
+def hash_password(password: str, salt: str) -> str:
+    m = hashlib.sha256()
+    m.update(f"{password}{salt}".encode("utf-8"))
+    return m.hexdigest()
+
+
 @app.route('/post-sign-up', methods=["post"])
 def post_sign_up():
     username = request.form.get("username")
@@ -79,7 +90,7 @@ def post_sign_up():
 
     logging.info("Insert new user data: {}", user_data)
 
-    # Log the new user in.
+    # Log the new user in and redirect to the profile page
     session["user_data"] = user_data
     return redirect(url_for("profile"))
 
@@ -128,35 +139,52 @@ def logout():
     return redirect(url_for("home"))
 
 
+# Profile Page
 @app.route("/profile")
 def profile():
     return render_template('profile.html')
 
-
+# Show all books
 @app.route("/books")
 def books():
     allbooks = db.execute(
         "SELECT isbn, title, author, year FROM books").fetchmany(50)
     return render_template('books.html', books=allbooks)
 
-# @app.route("/isbn/<string:isbn>", method=["GET", "POST])
-# @login_required
-# def book(isbn):
-#     username = session.get('username')
-#     session["reviews"] = []
-#     new
-#     return render_template("book.html")
+
+@app.route("/search", methods=["get"])
+def search():
+    query = request.args.get("q")
+
+    if query is None:
+        return render_template("error.html", message="Not found. Please adjust the input and try again.")
+
+    query_title_case = query.title()
+    query_result = db.execute(
+        "SELECT * FROM books WHERE isbn LIKE :query or title LIKE :query or author LIKE :query limit 10", {
+            "query": f"%{query_title_case}%"}
+    )
+
+    if query_result == 0:
+        return render_template("error.html", message="No book found, please adjust your input and try again")
+
+    books = query_result.fetchall()
+
+    return render_template('result.html', books=books)
 
 
-def make_salt() -> str:
-    letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(16))
+@app.route("/book/<isbn>", methods=["get", "post"])
+def book(isbn):
+    user_id = session["user_data"]["id"]
+    session["reviews"] = []
+    book = db.execute(
+        "SELECT * FROM books WHERE isbn = :isbn LIMIT 1", {"isbn": isbn}
+    ).fetchone()
 
+    reviews = db.execute("SELECT * FROM reviews WHERE book_id = :book_id",
+                         {"book_id": book["id"]}).fetchall()
 
-def hash_password(password: str, salt: str) -> str:
-    m = hashlib.sha256()
-    m.update(f"{password}{salt}".encode("utf-8"))
-    return m.hexdigest()
+    return render_template("book.html", book=book, reviews=reviews)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="container">
   <div class="col">
-    <h1>Discover a book</h1>
+    <h1>Welcome to Bookli</h1>
   </div>
 
   <div class="row">
@@ -12,6 +12,7 @@
           type="text"
           placeholder="Search"
           name="text"
+          required
         />
         <button class="btn btn-info" type="submit">Search</button>
       </form>
@@ -48,11 +49,19 @@
           <p class="card-text">ISBN {{ book.isbn }}</p>
           <p class="card-text">{{ book.review }}</p>
           <p>
-            <a class="float-right btn btn-outline-info ml-2">
+            <a
+              href="/book/{{book.isbn}}"
+              class="float-right btn btn-outline-info ml-2"
+            >
               <i class="fa fa-comments"></i> Review
             </a>
-            <a class="float-right btn text-white btn-danger">
-              <i class="fa fa-heart"></i> Like</a
+          </p>
+          <p>
+            <a
+              href="/book/{{book.isbn}}"
+              class="float-right btn text-white btn-info"
+            >
+              <i class="fa fa-heart"></i> Details</a
             >
           </p>
         </div>
