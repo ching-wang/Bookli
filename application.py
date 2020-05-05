@@ -154,22 +154,23 @@ def books():
 
 @app.route("/search", methods=["get"])
 def search():
-    query = request.args.get("book").title()
+    query = request.args.get("q")
 
     if query is None:
         return render_template("error.html", message="Not found. Please adjust the input and try again.")
 
+    query_title_case = query.title()
     query_result = db.execute(
-        "SELECT isbn, title, author, year FROM books WHERE isbn LIKE :query or title LIKE :query or author LIKE :query limit 10", {
-            "query": query}
+        "SELECT * FROM books WHERE isbn LIKE :query or title LIKE :query or author LIKE :query limit 10", {
+            "query": f"%{query_title_case}%"}
     )
 
     if query_result == 0:
         return render_template("error.html", message="No book found, please adjust your input and try again")
 
-    books_to_render = query_result.fetchall()
+    books = query_result.fetchall()
 
-    return render_template('result.html', books=books_to_render)
+    return render_template('result.html', books=books)
 
 
 @app.route("/book/<isbn>", methods=["get", "post"])

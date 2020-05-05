@@ -1,1 +1,23 @@
-<h1>search result</h1>
+{% extends "layout.html" %} {% block hero %}
+
+<div class="col">
+  <h1>Search Results</h1>
+
+  {% for book in books %}
+  <div class="card">
+    <div class="card-title">
+      {{ book.title }}
+    </div>
+    <div class="card-body">
+      <p>
+        {{ book.author }}
+      </p>
+      <p>
+        {{ book.isbn }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
