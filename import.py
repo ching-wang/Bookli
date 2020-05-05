@@ -11,6 +11,7 @@ if not os.getenv("DATABASE_URL"):
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+# Read csv file and DB
 with open("books.csv", "r") as f:
     reader = csv.DictReader(f)
     row_num = 0
