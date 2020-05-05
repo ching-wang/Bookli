@@ -157,10 +157,10 @@ def search():
     query = request.args.get("book").title()
 
     if query is None:
-        return render_template("search_result.html", message="Not found. Please adjust the input and try again.")
+        return render_template("error.html", message="Not found. Please adjust the input and try again.")
 
     query_result = db.execute(
-        "SELECT isbn, title, author, year FROM books WHERE isbn LIKE :query or title LIKE :query or author LIKE :query limit 50", {
+        "SELECT isbn, title, author, year FROM books WHERE isbn LIKE :query or title LIKE :query or author LIKE :query limit 10", {
             "query": query}
     )
 
@@ -172,21 +172,18 @@ def search():
     return render_template('result.html', books=books_to_render)
 
 
-# @app.route("/book/<isbn>", method=["GET", "POST"])
-# def book(isbn):
-#     current_user_id = session["user_id"]
-#     # session["reviews"] = []
+@app.route("/book/<isbn>", methods=["get", "post"])
+def book(isbn):
+    user_id = session["user_data"]["id"]
+    session["reviews"] = []
+    book = db.execute(
+        "SELECT * FROM books WHERE isbn = :isbn LIMIT 1", {"isbn": isbn}
+    ).fetchone()
 
-#     current_book_id = db.execute(
-#         "SELECT id FROM books WHERE isbn = :isbn", {"isbn": isbn})
+    reviews = db.execute("SELECT * FROM reviews WHERE book_id = :book_id",
+                         {"book_id": book["id"]}).fetchall()
 
-#     current_review = db.execute("SELECT * FROM reviews WHERE book_id = :book_id AND user_id = :user_id",
-#                                 {"user_id": current_user_id, "book_id": current_book_id})
-
-#     current_book_details = db.execute(
-#         "SELECT * FROM review WHERE book_id = :book_id", {"book_id": current_book_id})
-
-#     return render_template("book.html", book_details=current_book_details)
+    return render_template("book.html", book=book, reviews=reviews)
 
 
 if __name__ == "__main__":

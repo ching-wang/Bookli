@@ -4,22 +4,33 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title">THE SWITCH</h3>
-          <h6 class="card-text text-info">By <strong>Beth O'Leary</strong></h6>
-          <p class="card-text">NO. ISBNNUMBER</p>
+          <h3 class="card-title">{{book.title}}</h3>
+          <h6 class="card-text text-info">
+            By <strong>{{book.author}}</strong>
+          </h6>
+          <p class="card-text">{{book.isbn}}</p>
         </div>
         <div class="row">
           <div class="col-sm-3">
             <button class="btn-group-sm btn-info">
-              <a href="#" class="btn">BUY IT AMAZON</a>
+              <a href="#" class="btn">BUY IT ON AMAZON</a>
             </button>
           </div>
           <div class="col-sm-3">
             <button class="btn-group-sm btn-info">
-              <a href="#" class="btn">Add WishList</a>
+              <a href="#" class="btn">Add to WishList</a>
             </button>
           </div>
         </div>
+      </div>
+      <div>
+        {% for review in reviews %}
+        <div>
+          <p>
+            {{review}}
+          </p>
+        </div>
+        {% endfor %}
       </div>
     </div>
     {% endblock %}
