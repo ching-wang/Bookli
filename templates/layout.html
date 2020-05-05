@@ -28,7 +28,7 @@
       type="text/css"
       href="{{ url_for('static', filename='main.css') }}"
     />
-
+    <script src="https://use.fontawesome.com/3ee7d6380a.js"></script>
     <title>Book Finder</title>
   </head>
   <body>
@@ -93,6 +93,22 @@
             </button></a
           >
           {% endif %} {% if "user_data" in session %}
+          <form
+            class="form-inline my-2 my-lg-0"
+            action="{{ url_for('search')}}"
+            method="get"
+          >
+            <input
+              class="form-control mr-sm-2"
+              type="text"
+              name="book"
+              placeholder="Search by title, Isbn or Author"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
           <form class="form" action="{{ url_for('logout')}}" method="post">
             <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">
               Logout
