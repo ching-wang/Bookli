@@ -9,14 +9,32 @@
             By <strong>{{book.author}}</strong>
           </h6>
           <p class="card-text">{{book.isbn}}</p>
+          <h3 class="card-title">AVG Rating: (to be checked)</h3>
+          <i class="fa fa-comments float btn btn-outline-info ml-2">
+            Reviews
+          </i>
+          {% for review in reviews %}
+          <ul>
+            <li>
+              "{{review.comment}}"
+              <small class="text-info">By User {{review.user_id}} </small>
+            </li>
+          </ul>
+          {% endfor %}
+
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Write a comment</label>
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+              ></textarea>
+              <button type="submit" class="btn btn-info mb-2">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
-      {% for review in reviews %}
-      <p>
-        {{review.comment}}
-      </p>
-
-      {% endfor %}
     </div>
   </div>
   {% endblock %}
