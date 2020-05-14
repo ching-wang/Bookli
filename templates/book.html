@@ -46,7 +46,10 @@
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star"></span>
               <p>4.1 average based on 254 reviews.</p>
-              <form>
+              <form
+                action="{{url_for('post_review', isbn=book.isbn)}}"
+                method="post"
+              >
                 <div class="form-group">
                   <label for="review"><em>Write a comment</em></label>
                   <textarea
