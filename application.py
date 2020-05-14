@@ -154,6 +154,7 @@ def books():
 
 # Search for a book
 @app.route("/search", methods=["get"])
+@login_required
 def search():
     query = request.args.get("q")
 
@@ -186,6 +187,24 @@ def book(isbn):
                          {"book_id": book["id"]}).fetchall()
 
     return render_template("book.html", book=book, reviews=reviews)
+
+
+@app.route("/book/<isbn>/review", methods=["post"])
+@login_required
+def post_review(isbn: str):
+    review = request.form.get("review")
+    # query book
+    book = db.execute("SELECT * from books WHERE isbn = :isbn LIMIT 1", {"isbn": isbn}
+                      ).fetchone()
+    if book is None:
+        return "Not found"
+
+    db.execute(
+        "INSERT INTO reviews (comment, book_id, user_id) VALUES (:comment, :book_id, :user_id)",
+        {"comment": review, "book_id": book.id, "user_id": session["user_data"]["id"]})
+    db.commit()
+
+    return redirect(url_for('book', isbn=book.isbn))
 
 
 if __name__ == "__main__":

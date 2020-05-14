@@ -5,7 +5,7 @@ from functools import wraps
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        if session.get("username")is None:
+        if session.get("user_data")is None:
             flash("You need to login first")
             return redirect("/login")
         else:
