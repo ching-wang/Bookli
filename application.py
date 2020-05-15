@@ -183,10 +183,11 @@ def book(isbn):
         "SELECT * FROM books WHERE isbn = :isbn LIMIT 1", {"isbn": isbn}
     ).fetchone()
 
-    reviews = db.execute("SELECT * FROM reviews WHERE book_id = :book_id",
-                         {"book_id": book["id"]}).fetchall()
+    review_with_users = db.execute(
+        "SELECT reviews.*, users.* FROM reviews INNER JOIN users ON users.id = reviews.user_id WHERE reviews.book_id = :book_id",
+        {"book_id": book["id"]}).fetchall()
 
-    return render_template("book.html", book=book, reviews=reviews)
+    return render_template("book.html", book=book, review_with_users=review_with_users)
 
 
 @app.route("/book/<isbn>/review", methods=["post"])

@@ -22,12 +22,12 @@
                   <i class="fa fa-comments float btn btn-outline-info ml-2">
                     Recent reviews
                   </i>
-                  {% for review in reviews %}
+                  {% for review in review_with_users %}
                   <ul>
                     <li>
                       "{{review.comment}}"
                       <small class="text-info"
-                        >By User {{review.user_id}}
+                        >By User {{review.username}}
                       </small>
                     </li>
                   </ul>
