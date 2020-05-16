@@ -1,7 +1,7 @@
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
 from helper import login_required
-from goodread import fetch_books
+from goodreads import get_reviews
 from flask_session import Session
 from flask import Flask, request, session, render_template, redirect, url_for, flash, jsonify
 from flask_bootstrap import Bootstrap
@@ -187,7 +187,14 @@ def book(isbn):
         "SELECT reviews.*, users.* FROM reviews INNER JOIN users ON users.id = reviews.user_id WHERE reviews.book_id = :book_id",
         {"book_id": book["id"]}).fetchall()
 
-    return render_template("book.html", book=book, review_with_users=review_with_users)
+    goodreads_counts = get_reviews(isbn)
+
+    return render_template(
+        "book.html",
+        book=book,
+        review_with_users=review_with_users,
+        goodreads_counts=goodreads_counts
+    )
 
 
 @app.route("/book/<isbn>/review", methods=["post"])
