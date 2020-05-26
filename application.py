@@ -200,6 +200,7 @@ def book(isbn):
 @app.route("/book/<isbn>/review", methods=["post"])
 @login_required
 def post_review(isbn: str):
+    isbn = str(isbn).strip()
     review = request.form.get("review")
     # query book
     book = db.execute("SELECT * from books WHERE isbn = :isbn LIMIT 1", {"isbn": isbn}
@@ -212,7 +213,7 @@ def post_review(isbn: str):
         {"comment": review, "book_id": book.id, "user_id": session["user_data"]["id"]})
     db.commit()
 
-    return redirect(url_for('book', isbn=book.isbn))
+    return redirect(url_for('book', isbn=str(book.isbn).strip()))
 
 
 if __name__ == "__main__":

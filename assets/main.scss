@@ -18,6 +18,11 @@ body {
   background-color: $primary-color;
 }
 
+.logo {
+  width: auto;
+  height: 50px;
+}
+
 h1,
 h2 {
   text-align: center;
@@ -43,20 +48,6 @@ h2 {
 .rating input:checked + label ~ label {
   color: #ffc107;
 }
-
-/* .heading {
-  font-size: 25px;
-  margin-right: 25px;
-}
-
-.fa {
-  font-size: 10px;
-}
-
-.checked {
-  color: orange;
-}
-*/
 
 /* Three column layout */
 .side {

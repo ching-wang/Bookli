@@ -33,13 +33,13 @@
       href="{{ url_for('static', filename='main.css') }}"
     />
     <script src="https://use.fontawesome.com/3ee7d6380a.js"></script>
-    <title>Book Finder</title>
+    <title>Bookli</title>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {% block navbar %}
-        <a class="navbar-brand" href="{{ url_for('home')}}">Book Finder</a>
+        <a class="navbar-brand" href="{{ url_for('home')}}">Bookli</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -121,6 +121,9 @@
         </div>
       </nav>
     </header>
+    <div class="d-flex">
+      <img src="../assets/images/brand_logo.png" class="logo" />
+    </div>
     <div class="container-fluid">
       <div class="row">
         {% block hero %} {% endblock %}
@@ -133,6 +136,7 @@
     {% endblock %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     {% block tail_js %}
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

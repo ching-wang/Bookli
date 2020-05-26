@@ -15,6 +15,7 @@
           </h6>
           <p>Published in {{ book.year }}</p>
           <p class="card-text">ISBN {{ book.isbn }}</p>
+          {% if session.user_data %}
           <div class="card-footer bg-transparent border-success">
             <a
               href="/book/{{book.isbn}}"
@@ -28,6 +29,7 @@
               >
             </p>
           </div>
+          {% endif %}
         </div>
       </div>
     </div>
