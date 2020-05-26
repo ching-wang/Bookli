@@ -11,6 +11,10 @@
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
@@ -29,13 +33,13 @@
       href="{{ url_for('static', filename='main.css') }}"
     />
     <script src="https://use.fontawesome.com/3ee7d6380a.js"></script>
-    <title>Book Finder</title>
+    <title>Bookli</title>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {% block navbar %}
-        <a class="navbar-brand" href="{{ url_for('home')}}">Book Finder</a>
+        <a class="navbar-brand" href="{{ url_for('home')}}">Bookli</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -74,8 +78,7 @@
                 <a class="dropdown-item" href="{{ url_for('profile')}}"
                   >Account</a
                 >
-                <a class="dropdown-item" href="#">Comments</a>
-                <a class="dropdown-item" href="#">Reading list</a>
+                <a class="dropdown-item" href="#">My Comments</a>
               </div>
             </li>
             {% endif %}
@@ -101,7 +104,7 @@
             <input
               class="form-control mr-sm-2"
               type="text"
-              name="book"
+              name="q"
               placeholder="Search by title, Isbn or Author"
               aria-label="Search"
             />
@@ -118,6 +121,9 @@
         </div>
       </nav>
     </header>
+    <div class="d-flex">
+      <img src="../assets/images/brand_logo.png" class="logo" />
+    </div>
     <div class="container-fluid">
       <div class="row">
         {% block hero %} {% endblock %}
@@ -130,6 +136,7 @@
     {% endblock %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     {% block tail_js %}
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
