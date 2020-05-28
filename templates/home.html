@@ -2,20 +2,12 @@
 <div class="container">
   {% if "user_data" in session %}
   <div class="d-flex">
-    Welcome {{ session["user_data"]["username"].capitalize()}}!
+    You are logged in as {{ session["user_data"]["username"].capitalize()}}
   </div>
   {% endif %}
       <div class="jumbotron">
-        <h1 class="display-4">Welcome to Bookli!</h1>
-        <p class="lead">
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
-        </p>
-        <hr class="my-4" />
-        <p>
-          It uses utility classes for typography and spacing to space content
-          out within the larger container.
-        </p>
+        <h1 class="display-4">Welcome to Bookli</h1>
+        {% if "user_data" not in session %}
         <div class="card">
           <a
             class="btn btn-info btn-lg"
@@ -34,6 +26,7 @@
         </p>
       </div>
     </div>
+    {% endif %}
     {% endblock %}
   </div>
 </div>
