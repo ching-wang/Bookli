@@ -109,13 +109,6 @@ h2 {
   background-color: #f44336;
 }
 
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-/*@media (max-width: 400px) {
-  .side,
-  .middle {
-    width: 100%;
-  }
-  .right {
-    display: none;
-  }
-}*/
+.navbar-brand {
+  color: red;
+}
