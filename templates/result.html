@@ -1,22 +1,39 @@
 {% extends "layout.html" %} {% block hero %}
-<div class="container"
-<div class="row row-cols-1 row-cols-md-3">
-  {% for book in books %}
+<div class="container">
   <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">{{ book.title }}</h5>
-        <p class="card-text">
-          {{ book.author }}
-        </p>
-        <p class="card-text">
-          {{ book.isbn }}
-        </p>
+    <h1>Searching results</h1>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for book in books %}
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="book cover" />
+        <div class="card-body">
+          <h2 class="card-title">{{ book.title }}</h2>
+          <h6 class="card-text">
+            <small>By</small> <strong>{{ book.author }}</strong>
+          </h6>
+          <p>Published in {{ book.year }}</p>
+          <p class="card-text">ISBN {{ book.isbn }}</p>
+          {% if session.user_data %}
+          <div class="card-footer bg-transparent border-success">
+            <a
+              href="/book/{{book.isbn}}"
+              class="float-right btn btn-outline-info ml-2"
+            >
+              <i class="fa fa-comments"></i> Review
+            </a>
+            <p class="card-text">
+              <a href="/book/{{book.isbn}}" class="btn text-white btn-info">
+                <i class="fa fa-heart"></i> Details</a
+              >
+            </p>
+          </div>
+          {% endif %}
+        </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
 </div>
 {% endblock %}
