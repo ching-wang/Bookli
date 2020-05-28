@@ -64,22 +64,15 @@
               >
             </li>
             {% if "user_data" in session %}
-            <li class="nav-item dropdown">
+            <li class="nav-item active">
               <a
-                class="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                href="#"
+                class="nav-link"
+                href="{{ url_for('profile')}}"
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
                 >Profile</a
               >
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ url_for('profile')}}"
-                  >Account</a
-                >
-                <a class="dropdown-item" href="#">My Comments</a>
-              </div>
             </li>
             {% endif %}
           </ul>
