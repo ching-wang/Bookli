@@ -158,7 +158,7 @@ def books():
 def search():
     query = request.args.get("q")
 
-    if query is None:
+    if not query:
         return render_template("error.html", message="Not found. Please adjust the input and try again.")
 
     query_title_case = query.title()
