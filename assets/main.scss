@@ -3,7 +3,15 @@
 $font-stack: "Unica One", cursive;
 $hero-font: "Julius Sans One", sans-serif;
 
+body {
+  color: white;
+}
+
 h1,
 h2 {
   text-align: center;
+}
+
+.navbar-brand-bookli {
+  color: red;
 }
