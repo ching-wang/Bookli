@@ -1,5 +1,32 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="container">
-  Welcome to Bookli
+  {% if "user_data" in session %}
+  <div class="d-flex">
+    You are logged in as {{ session["user_data"]["username"].capitalize()}}
+  </div>
+  {% endif %}
+      <div class="jumbotron">
+        <h1 class="display-4">Welcome to Bookli</h1>
+        {% if "user_data" not in session %}
+        <div class="card">
+          <a
+            class="btn btn-info btn-lg"
+            href="{{ url_for('get_login')}}"
+            role="button"
+            >Login</a
+          >
+        </div>
+        <p class="card">
+          <a
+            class="btn btn-info btn-lg"
+            href="{{ url_for('get_sign_up')}}"
+            role="button"
+            >Sign Up</a
+          >
+        </p>
+      </div>
+    </div>
+    {% endif %}
+    {% endblock %}
+  </div>
 </div>
-{% endblock %}

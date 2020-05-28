@@ -37,9 +37,19 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg bg-dark">
         {% block navbar %}
-        <a class="navbar-brand" href="{{ url_for('home')}}">Bookli</a>
+        <a class="navbar-brand" href="{{ url_for('home')}}">
+          <img
+            src="/static/images/book-icon.png"
+            width="30"
+            height="30"
+            alt="book image"
+          />
+        </a>
+        <a class="navbar-brand navbar-brand-bookli" href="{{ url_for('home')}}"
+          >Bookli</a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -59,36 +69,17 @@
             role="tablist"
           >
             <li class="nav-item active">
-              <a class="nav-link" href="{{ url_for('books')}}"
-                >All Books <span class="sr-only">(current)</span></a
-              >
-            </li>
-            {% if "user_data" in session %}
-            <li class="nav-item active">
               <a
                 class="nav-link"
-                href="{{ url_for('profile')}}"
+                href="{{ url_for('books')}}"
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
-                >Profile</a
+                >All Books</a
               >
             </li>
-            {% endif %}
           </ul>
-          <!-- if session username is None -->
-          {% if "user_data" not in session %}
-          <a href="{{ url_for('get_login')}}"
-            ><button class="btn btn-outline-dark my-2 my-sm-0">
-              Login
-            </button></a
-          >
-          <a href="{{ url_for('get_sign_up')}}"
-            ><button class="btn btn-outline-dark my-2 my-sm-0">
-              Sign Up
-            </button></a
-          >
-          {% endif %} {% if "user_data" in session %}
+          {% if "user_data" in session %}
           <form
             class="form-inline my-2 my-lg-0"
             action="{{ url_for('search')}}"
@@ -98,15 +89,15 @@
               class="form-control mr-sm-2"
               type="text"
               name="q"
-              placeholder="Search by title, Isbn or Author"
+              placeholder="Search by Title, Isbn or Author"
               aria-label="Search"
             />
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+            <button class="btn btn-outline-light my-sm-0" type="submit">
               Search
             </button>
           </form>
           <form class="form" action="{{ url_for('logout')}}" method="post">
-            <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">
+            <button type="submit" class="btn btn-outline-light my-2 my-sm-0">
               Logout
             </button>
           </form>
@@ -114,9 +105,6 @@
         </div>
       </nav>
     </header>
-    <div class="d-flex">
-      <img src="../assets/images/brand_logo.png" class="logo" />
-    </div>
     <div class="container-fluid">
       <div class="row">
         {% block hero %} {% endblock %}
