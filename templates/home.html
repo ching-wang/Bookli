@@ -1,21 +1,39 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">Welcome to Bookli!</h1>
-    <p class="lead">
-      This is a simple hero unit, a simple jumbotron-style component for calling
-      extra attention to featured content or information.
-    </p>
-    <hr class="my-4" />
-    <p>
-      It uses utility classes for typography and spacing to space content out
-      within the larger container.
-    </p>
-    <p class="lead">
-      <a class="btn btn-info btn-lg" href="{{ url_for('books')}}" role="button"
-        >All Books</a
-      >
-    </p>
+  {% if "user_data" in session %}
+  <div class="d-flex">
+    Welcome {{ session["user_data"]["username"].capitalize()}}!
+  </div>
+  {% endif %}
+      <div class="jumbotron">
+        <h1 class="display-4">Welcome to Bookli!</h1>
+        <p class="lead">
+          This is a simple hero unit, a simple jumbotron-style component for
+          calling extra attention to featured content or information.
+        </p>
+        <hr class="my-4" />
+        <p>
+          It uses utility classes for typography and spacing to space content
+          out within the larger container.
+        </p>
+        <div class="card">
+          <a
+            class="btn btn-info btn-lg"
+            href="{{ url_for('get_login')}}"
+            role="button"
+            >Login</a
+          >
+        </div>
+        <p class="card">
+          <a
+            class="btn btn-info btn-lg"
+            href="{{ url_for('get_sign_up')}}"
+            role="button"
+            >Sign Up</a
+          >
+        </p>
+      </div>
+    </div>
+    {% endblock %}
   </div>
 </div>
-{% endblock %}
