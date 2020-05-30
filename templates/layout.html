@@ -63,39 +63,39 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul
-            class="navbar-nav mr-auto mt-2 mt-lg-0 nav nav-tabs"
-            id="myTab"
-            role="tablist"
-          >
-            <li class="nav-item active">
-              <a
-                class="nav-link"
-                href="{{ url_for('books')}}"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >All Books</a
-              >
-            </li>
-          </ul>
-          {% if "user_data" in session %}
           <form
             class="form-inline my-2 my-lg-0"
             action="{{ url_for('search')}}"
             method="get"
           >
-            <input
-              class="form-control mr-sm-2"
-              type="text"
-              name="q"
-              placeholder="Search by Title, Isbn or Author"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-light my-sm-0" type="submit">
-              Search
-            </button>
+            <div class="input-group">
+              <input
+                class="form-control mr-lg"
+                type="text"
+                name="q"
+                placeholder="Search by Title, Isbn or Author"
+                aria-label="Search"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary my-sm-0" type="submit">
+                  Search
+                </button>
+              </div>
+            </div>
           </form>
+          <!-- if session username is None -->
+          {% if "user_data" not in session %}
+          <a href="{{ url_for('get_login')}}"
+            ><button class="btn btn-outline-light my-sm-2 float-sm-right">
+              Login
+            </button></a
+          >
+          <a href="{{ url_for('get_sign_up')}}"
+            ><button class="btn btn-outline-light my-sm-2 float-sm-right">
+              Sign Up
+            </button></a
+          >
+          {% endif %} {% if "user_data" in session %}
           <form class="form" action="{{ url_for('logout')}}" method="post">
             <button type="submit" class="btn btn-outline-light my-2 my-sm-0">
               Logout
