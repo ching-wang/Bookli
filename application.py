@@ -92,7 +92,7 @@ def post_sign_up():
 
     # Log the new user in and redirect to the profile page
     session["user_data"] = user_data
-    return redirect(url_for("profile"))
+    return redirect(url_for("home"))
 
 
 @app.route("/login", methods=["get"])
@@ -129,7 +129,7 @@ def post_login():
     # Log the user in in Flask by setting the user data in session
     session["user_data"] = user_data
 
-    return redirect(url_for("profile"))
+    return redirect(url_for("home"))
 
 
 @app.route("/logout", methods=["post"])
@@ -138,19 +138,12 @@ def logout():
     flash("You have been logged out!")
     return redirect(url_for("home"))
 
-
-# Profile Page
-@app.route("/profile")
-def profile():
-    return render_template('profile.html')
-
 # Show all books
 @app.route("/books")
 def books():
     allbooks = db.execute(
         "SELECT isbn, title, author, year FROM books").fetchmany(50)
     return render_template('books.html', books=allbooks)
-
 
 # Search for a book
 @app.route("/search", methods=["get"])
