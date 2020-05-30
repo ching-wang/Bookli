@@ -25,7 +25,8 @@
                   {% for review in review_with_users %}
                   <ul>
                     <li>
-                      "{{review.comment}}"
+                      <p>"{{review.comment}}"</p>
+                      <h6>The rating is {{review.rating}}</h6>
                       <small class="text-info"
                         >By {{review.username.capitalize()}}
                       </small>
@@ -52,6 +53,16 @@
                 action="{{url_for('post_review', isbn=book.isbn)}}"
                 method="post"
               >
+                <div class="form-group">
+                  <label for="rating">Rating</label>
+                  <select class="form-control" name="rating" id="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
                 <div class="form-group">
                   <label for="review"><em>Write a comment</em></label>
                   <textarea

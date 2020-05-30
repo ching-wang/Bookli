@@ -210,6 +210,5 @@ def post_review(isbn: str):
 
     return redirect(url_for('book', isbn=str(book.isbn).strip()))
 
-
 if __name__ == "__main__":
     main()
