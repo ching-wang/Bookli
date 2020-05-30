@@ -140,6 +140,7 @@ def logout():
 
 # Show all books
 @app.route("/books")
+@login_required
 def books():
     allbooks = db.execute(
         "SELECT isbn, title, author, year FROM books").fetchmany(50)
