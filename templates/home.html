@@ -5,28 +5,27 @@
     You are logged in as {{ session["user_data"]["username"].capitalize()}}
   </div>
   {% endif %}
-      <div class="jumbotron">
-        <h1 class="display-4">Welcome to Bookli</h1>
-        {% if "user_data" not in session %}
-        <div class="card">
-          <a
-            class="btn btn-info btn-lg"
-            href="{{ url_for('get_login')}}"
-            role="button"
-            >Login</a
-          >
-        </div>
-        <p class="card">
-          <a
-            class="btn btn-info btn-lg"
-            href="{{ url_for('get_sign_up')}}"
-            role="button"
-            >Sign Up</a
-          >
-        </p>
-      </div>
-    </div>
-    {% endif %}
-    {% endblock %}
+  <div class="jumbotron">
+    <h1 class="display-4">Welcom to Bookli</h1>
+    <p class="lead">
+      Hello there! this is a demo website. As a user you can you can sign up or
+      login, you can also search for book, comment on a book. By the way, You
+      have to login to be able to search for a book and make comments.
+    </p>
+    <hr class="my-4" />
+    <p>
+      About search, if you type in a part of a title, ISBN, or author name. It
+      should show you the search result. Otherwise, it will render a error
+      message page.
+    </p>
+    <p class="lead">
+      <a
+        class="btn btn-primary btn-lg"
+        href="{{ url_for('books')}}"
+        role="button"
+        >View all books</a
+      >
+    </p>
   </div>
 </div>
+{% endblock %}
