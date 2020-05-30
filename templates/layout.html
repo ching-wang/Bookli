@@ -79,7 +79,6 @@
               >
             </li>
           </ul>
-          {% if "user_data" in session %}
           <form
             class="form-inline my-2 my-lg-0"
             action="{{ url_for('search')}}"
@@ -92,10 +91,23 @@
               placeholder="Search by Title, Isbn or Author"
               aria-label="Search"
             />
-            <button class="btn btn-outline-light my-sm-0" type="submit">
+            <button class="btn btn-outline-primary my-sm-0" type="submit">
               Search
             </button>
           </form>
+          <!-- if session username is None -->
+          {% if "user_data" not in session %}
+          <a href="{{ url_for('get_login')}}"
+            ><button class="btn btn-outline-light my-sm-0">
+              Login
+            </button></a
+          >
+          <a href="{{ url_for('get_sign_up')}}"
+            ><button class="btn btn-outline-light my-sm-0">
+              Sign Up
+            </button></a
+          >
+          {% endif %} {% if "user_data" in session %}
           <form class="form" action="{{ url_for('logout')}}" method="post">
             <button type="submit" class="btn btn-outline-light my-2 my-sm-0">
               Logout
