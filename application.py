@@ -196,6 +196,7 @@ def book(isbn):
 def post_review(isbn: str):
     isbn = str(isbn).strip()
     review = request.form.get("review")
+    rating = request.form.get("rating")
     # query book
     book = db.execute("SELECT * from books WHERE isbn = :isbn LIMIT 1", {"isbn": isbn}
                       ).fetchone()
@@ -203,8 +204,8 @@ def post_review(isbn: str):
         return "Not found"
 
     db.execute(
-        "INSERT INTO reviews (comment, book_id, user_id) VALUES (:comment, :book_id, :user_id)",
-        {"comment": review, "book_id": book.id, "user_id": session["user_data"]["id"]})
+        "INSERT INTO reviews (rating, comment, book_id, user_id) VALUES (:rating, :comment, :book_id, :user_id)",
+        {"rating": rating, "comment": review, "book_id": book.id, "user_id": session["user_data"]["id"]})
     db.commit()
 
     return redirect(url_for('book', isbn=str(book.isbn).strip()))
