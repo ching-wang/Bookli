@@ -158,13 +158,13 @@ def search():
     query_title_case = query.title()
     query_result = db.execute(
         "SELECT * FROM books WHERE isbn LIKE :query or title LIKE :query or author LIKE :query limit 10", {
-            "query": f"%{query_title_case}%"}
-    )
+            "query": f"%{query_title_case}%"}).fetchall()
 
-    if query_result == 0:
-        return render_template("error.html", message="No book found, please adjust your input and try again")
+    query_size = len(query_result)
+    if query_size == 0:
+        return render_template("error.html", message="Not found. Please adjust the input and try again. You can search by author name, isbn number or book title.")
 
-    books = query_result.fetchall()
+    books = query_result
 
     return render_template('result.html', books=books)
 
