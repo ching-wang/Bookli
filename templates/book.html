@@ -6,52 +6,41 @@
         <div class="card-body">
           <div class="row">
             <div class="col-sm-6">
-              <img
-                src="https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408848180.jpg"
-              />
-            </div>
-            <div class="col-sm-6">
-              <h3 class="card-title">{{book.title}}</h3>
-              <h6 class="card-text text-info">
+              <h1 class="card-title">{{book.title}}</h1>
+              <h6 class="card-text text-primary">
                 By <strong>{{book.author}}</strong>
               </h6>
-              <p class="card-text">ISBN: {{book.isbn}}</p>
-              <hr />
+              <small class="card-text">ISBN: {{book.isbn}}</small>
               <div class="row">
                 <div class="col">
-                  <i class="fa fa-comments float btn btn-outline-info ml-2">
-                    Recent reviews
-                  </i>
-                  {% for review in review_with_users %}
-                  <ul>
-                    <li>
-                      "{{review.comment}}"
-                      <small class="text-info"
-                        >By {{review.username.capitalize()}}
-                      </small>
-                    </li>
-                  </ul>
-                  {% endfor %}
+                  <h6>Goodreads Rating</h6>
+                  <p>
+                    The average rating is
+                    <strong>{{goodreads_counts.average_rating}}</strong> based on
+                  </strong>{{goodreads_counts.ratings_count}}</strong> ratings on
+                    <a href="https://www.goodreads.com/"
+                      ><strong>Goodreads</strong></a
+                    >.
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-          <hr style="border: 3px solid #f1f1f1;" />
-          <div class="row">
-            <div class="col">
-              <h3>User Rating</h3>
-              <p>
-                The average rating is
-                <strong>{{goodreads_counts.average_rating}}</strong> based on
-              </strong>{{goodreads_counts.ratings_count}}</strong> ratings on
-                <a href="https://www.goodreads.com/"
-                  ><strong>Goodreads</strong></a
-                >
-              </p>
-              <form
+              <div class="col-sm-6">
+                <em><h1>Review the book</h1></em>
+                <form
                 action="{{url_for('post_review', isbn=book.isbn)}}"
                 method="post"
               >
+                <div class="form-group">
+                  <label for="rating">Rating</label>
+                  <select class="form-control" name="rating" id="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
                 <div class="form-group">
                   <label for="review"><em>Write a comment</em></label>
                   <textarea
@@ -62,11 +51,25 @@
                     required
                   ></textarea>
                 </div>
-                <button type="submit" class="btn btn-info mb-2">
+                <button type="submit" class="btn btn-primary mb-2 btn-sm">
                   Submit
                 </button>
               </form>
             </div>
+          </div>
+          <hr style="border: 3px solid #f1f1f1;" />
+        <div class="row">
+          <div class="col">
+            <i class="fa fa-comments"> Recent Reviews</i>
+            <div class="list-group">
+                {% for review in review_with_users %}
+                <div class="d-flex w-100 justify-content-between">
+                  <em><p class="mb-1">By {{review.username.capitalize()}} </p></em>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">{{review.comment}}</p>
+                <small>Rating {{review.rating}}</small>
+                {% endfor %}
           </div>
         </div>
       </div>
