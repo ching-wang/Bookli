@@ -220,7 +220,6 @@ def post_review(isbn: str):
 
 
 @app.route('/api/<isbn>')
-@login_required
 def api(isbn):
     query_result = db.execute("SELECT * FROM books WHERE isbn = :isbn",
                               {"isbn": isbn}).fetchone()
