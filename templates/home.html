@@ -2,7 +2,10 @@
 <div class="container">
   {% if "user_data" in session %}
   <div class="d-flex">
-    You are logged in as {{ session["user_data"]["username"].capitalize()}}
+    You are logged in as &nbsp
+    <span class="text-primary"
+      >{{ session["user_data"]["username"].capitalize()}}</span
+    >
   </div>
   {% endif %}
   <div class="jumbotron">
