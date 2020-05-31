@@ -92,13 +92,15 @@
             {% if "user_data" not in session %}
             <li class="nav-item">
               <a
-                class="nav-link text-light btn btn-outline-light"
+                class="nav-link text-light btn btn-outline-primary"
                 href="{{ url_for('get_login')}}"
                 >Login</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="{{ url_for('get_sign_up')}}"
+              <a
+                class="nav-link text-primary"
+                href="{{ url_for('get_sign_up')}}"
                 >Sign Up</a
               >
             </li>

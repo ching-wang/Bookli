@@ -32,4 +32,44 @@ Run `flask run` to start up the application.
 
 ## User Story
 
-AAU, you can login, sign up, comment on a book, search for book.
+AAU, I want to sign up with a username, password and email address.
+AAU, I want to login with username and password that I registered with. If the password/username is wrong or doesn't match. It should render a error message.
+AAU, I want search for a book by isbn, title or author. If the query is empty or there is not found in our database. It should render a message.
+AAU, I want rating and write a review for a book but I can't submit multiple comment for one book.
+
+## Files
+
+### Contents of Each File
+
+#### book.html
+
+It shows book details, including book author, book title, book isbn, publish year and recent reviews for this book from our users.
+It also includes average ratings and review count that pull off from goodreads API. and review form which you can submit a review with rating.
+
+#### books.html
+
+It shows 50 books from our website. You have to login in to view this page, otherwise, you will be redirect to Login page.
+
+#### error.html
+
+Render error message accordingly.
+
+#### home.html
+
+A hero page which contents a link of first 50 books in our database.
+
+#### layout.html
+
+A layout templates which include a nav bar and all needed scripts
+
+#### login.html
+
+Form for login
+
+#### result.html
+
+Book search results with book details such as Title Author, Year, isbn and Published year on cards.
+
+#### sign_up.html
+
+Form for sign up

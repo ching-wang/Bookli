@@ -66,10 +66,10 @@
                 {% for review in review_with_users %}
                 <div class="d-flex w-100 justify-content-between">
                   <p class="mb-1 card-text text-primary font-italic">By {{review.username.capitalize()}} </p>
-                  <small>{{ review.created_at.strftime('%Y-%m-%d') }}</small>
+                  <small class="font-italic text-dark"> Reviewed at {{ review.created_at.strftime('%Y-%m-%d') }}</small>
                 </div>
+                <small>Rating: <span class="font-weight-bold font-italic">{{review.rating}}</span></small>
                 <p class="mb-1">{{review.comment}}</p>
-                <small>Rating {{review.rating}}</small>
                 {% endfor %}
           </div>
         </div>
