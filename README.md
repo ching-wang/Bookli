@@ -33,8 +33,11 @@ Run `flask run` to start up the application.
 ## User Story
 
 AAU, I want to sign up with a username, password and email address.
+
 AAU, I want to login with username and password that I registered with. If the password/username is wrong or doesn't match. It should render a error message.
+
 AAU, I want search for a book by isbn, title or author. If the query is empty or there is not found in our database. It should render a message.
+
 AAU, I want rating and write a review for a book but I can't submit multiple comment for one book.
 
 ## Files
