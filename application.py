@@ -197,18 +197,27 @@ def post_review(isbn: str):
     isbn = str(isbn).strip()
     review = request.form.get("review")
     rating = request.form.get("rating")
+
     # query book
     book = db.execute("SELECT * from books WHERE isbn = :isbn LIMIT 1", {"isbn": isbn}
                       ).fetchone()
-    if book is None:
-        return "Not found"
 
+    # check if user has already review the book exist
+    is_user_has_already_reviewed = db.execute(
+        "SELECT * from reviews WHERE book_id = :book_id AND user_id = :user_id",
+        {"book_id": book.id, "user_id": session["user_data"]["id"]}).fetchone()
+
+    if book is None:
+        return render_template("error.html", message="Book Not found")
+    elif is_user_has_already_reviewed:
+        return render_template("error.html", message="You have already review the book")
     db.execute(
         "INSERT INTO reviews (rating, comment, book_id, user_id) VALUES (:rating, :comment, :book_id, :user_id)",
         {"rating": rating, "comment": review, "book_id": book.id, "user_id": session["user_data"]["id"]})
     db.commit()
 
     return redirect(url_for('book', isbn=str(book.isbn).strip()))
+
 
 if __name__ == "__main__":
     main()
