@@ -10,10 +10,11 @@
               <h6 class="card-text text-primary">
                 By <strong>{{book.author}}</strong>
               </h6>
-              <small class="card-text">ISBN: {{book.isbn}}</small>
+              <p>ISBN: {{book.isbn}}</p>
+              <p>Published in: {{book.year}}</p>
               <div class="row">
                 <div class="col">
-                  <h6>Goodreads Rating</h6>
+                  <h6 class="font-weight-bold">Goodreads Rating</h6>
                   <p>
                     The average rating is
                     <strong>{{goodreads_counts.average_rating}}</strong> based on
@@ -26,7 +27,7 @@
               </div>
             </div>
               <div class="col-sm-6">
-                <em><h1>Review the book</h1></em>
+                <h1 class="font-italic">Review the book</h1>
                 <form
                 action="{{url_for('post_review', isbn=book.isbn)}}"
                 method="post"
@@ -42,7 +43,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="review"><em>Write a comment</em></label>
+                  <label class="font-italic font-weight-light" for="review">Write a comment</label>
                   <textarea
                     class="form-control"
                     id="review"
@@ -64,8 +65,8 @@
             <div class="list-group">
                 {% for review in review_with_users %}
                 <div class="d-flex w-100 justify-content-between">
-                  <em><p class="mb-1">By {{review.username.capitalize()}} </p></em>
-                  <small>3 days ago</small>
+                  <p class="mb-1 card-text text-primary font-italic">By {{review.username.capitalize()}} </p>
+                  <small>{{ review.created_at.strftime('%Y-%m-%d') }}</small>
                 </div>
                 <p class="mb-1">{{review.comment}}</p>
                 <small>Rating {{review.rating}}</small>
