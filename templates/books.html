@@ -1,26 +1,25 @@
 {% extends "layout.html"%} {% block content %}
 <div class="container">
   <div class="col">
-    <h1>All Books</h1>
+    <h2>All Books</h2>
   </div>
   <div class="row row-cols-1 row-cols-md-3">
     {% for book in books %}
     <div class="col mb-4">
       <div class="card h-100">
         <div class="card-body">
+          <h3 class="card-title">{{ book.title }}</h3>
           <h6 class="card-text">
             <small>By</small> <strong>{{ book.author }}</strong>
           </h6>
-          <p>Published in {{ book.year }}</p>
-          <p class="card-text">ISBN {{ book.isbn }}</p>
           {% if session.user_data %}
-          <div class="card-footer bg-transparent border-success">
-            <a href="/book/{{book.isbn}}" class="btn btn-outline-info">
+          <div class="card-footer bg-transparent">
+            <a href="/book/{{book.isbn}}" class="btn text-white btn-dark">
+              <i class="fa fa-file"></i> Details</a
+            >
+            <a href="/book/{{book.isbn}}" class="btn btn-outline-primary">
               <i class="fa fa-comments"></i> Review
             </a>
-            <a href="/book/{{book.isbn}}" class="btn text-white btn-info">
-              <i class="fa fa-heart"></i> Details</a
-            >
           </div>
           {% endif %}
         </div>

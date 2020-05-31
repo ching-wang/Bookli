@@ -1,11 +1,10 @@
-body {
-  color: white; }
-
-h1,
-h2 {
-  text-align: center; }
-
 .navbar-brand-bookli {
-  color: red; }
+  font-size: 2em; }
+
+.hero {
+  font-size: 5em; }
+
+.jumbotron {
+  background-color: transparent; }
 
 /*# sourceMappingURL=main.css.map */
