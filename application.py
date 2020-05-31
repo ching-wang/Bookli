@@ -124,7 +124,7 @@ def post_login():
 
     if stored_hash != submitted_password_hash:
         # Wrong password: send back to login.
-        return render_template("login.html", message="Wrong password")
+        return render_template("login.html", message="Wrong password or username")
 
     # Log the user in in Flask by setting the user data in session
     session["user_data"] = user_data
