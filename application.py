@@ -158,13 +158,13 @@ def search():
     query_title_case = query.title()
     query_result = db.execute(
         "SELECT * FROM books WHERE isbn LIKE :query or title LIKE :query or author LIKE :query limit 10", {
-            "query": f"%{query_title_case}%"}
-    )
+            "query": f"%{query_title_case}%"}).fetchall()
 
-    if query_result == 0:
-        return render_template("error.html", message="No book found, please adjust your input and try again")
+    query_size = len(query_result)
+    if query_size == 0:
+        return render_template("error.html", message="Not found. Please adjust the input and try again. You can search by author name, isbn number or book title.")
 
-    books = query_result.fetchall()
+    books = query_result
 
     return render_template('result.html', books=books)
 
@@ -210,13 +210,37 @@ def post_review(isbn: str):
     if book is None:
         return render_template("error.html", message="Book Not found")
     elif is_user_has_already_reviewed:
-        return render_template("error.html", message="You have already review the book")
+        return render_template("error.html", message="You have already reviewed this book")
     db.execute(
         "INSERT INTO reviews (rating, comment, book_id, user_id) VALUES (:rating, :comment, :book_id, :user_id)",
         {"rating": rating, "comment": review, "book_id": book.id, "user_id": session["user_data"]["id"]})
     db.commit()
 
     return redirect(url_for('book', isbn=str(book.isbn).strip()))
+
+
+@app.route('/api/<isbn>')
+@login_required
+def api(isbn):
+    query_result = db.execute("SELECT * FROM books WHERE isbn = :isbn",
+                              {"isbn": isbn}).fetchone()
+    if not query_result:
+        return render_template("error.html", message="404 Not Found")
+
+    goodread_api_query_result = get_reviews(isbn)
+    review_count = goodread_api_query_result["reviews_count"]
+    average_score = goodread_api_query_result["average_rating"]
+
+    my_api = {
+        "title": query_result.title,
+        "author": query_result.author,
+        "year": query_result.year,
+        "isbn": query_result.isbn,
+        "review_count": review_count,
+        "average_score": average_score
+    }
+
+    return jsonify(my_api)
 
 
 if __name__ == "__main__":
